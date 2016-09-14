@@ -167,7 +167,12 @@ public class ConditionUtils {
 
 		// 非高级查询的处理
 		boolean isAdvance = query.startsWith("[");
-		if (!isAdvance) return toFuzzyCondition(query, fuzzyFields, ignoreCase);
+		if (!isAdvance) {
+			JsonObject jq = Json.createReader(new StringReader(query)).readObject();
+			if ("_fuzzy_".equals(jq.getString("id"))) {      // 模糊查询
+				return toFuzzyCondition(jq.getString("value"), fuzzyFields, ignoreCase);
+			}
+		}
 
 		// 高级查询的处理: [{id, value, operator[, type][, label]}]
 		JsonArray qs = Json.createReader(new StringReader(query)).readArray();
