@@ -5,8 +5,6 @@ package cn.bc.core.query.condition;
 
 import cn.bc.core.query.QueryOperator;
 
-import java.util.List;
-
 /**
  * 高级条件配置
  * <p>
@@ -29,17 +27,4 @@ public interface AdvanceCondition {
 	 * @return 参数值
 	 */
 	Object getValue();
-
-	/**
-	 * 映射配置
-	 */
-	String getMapper();
-
-	/**
-	 * 转换为条件
-	 *
-	 * @param mapper 映射配置，weikong则不做映射
-	 * @return
-	 */
-	Condition toCondition(String mapper);
 }
