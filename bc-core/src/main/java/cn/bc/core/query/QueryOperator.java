@@ -96,7 +96,7 @@ public enum QueryOperator {
 	 */
 	public static QueryOperator symbolOf(String symbol) {
 		for (QueryOperator t : QueryOperator.values()) {
-			if (t.symbol() == symbol) return t;
+			if (t.symbol().equals(symbol)) return t;
 		}
 		throw new IllegalArgumentException("un support QueryOperator symbol: " + symbol);
 	}
